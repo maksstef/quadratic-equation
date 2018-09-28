@@ -1,35 +1,28 @@
 module.exports = function solveEquation(equation) {
-  let subs = equation.split(' '); 
+  var s = equation.split(' ');
 
-    subs[4] = subs[3] + subs[4]; 
 
-    subs[8] = subs[7] + subs[8]; 
 
-    
+let x1=0 ;
 
-    let numbers = subs.map(x => parseInt(x)); 
+let x2=0 ;
 
-    numbers = numbers.filter(x => !isNaN(x)); 
+let a=s[0]; 
 
-    
+let b=s[3]+s[4];
 
-    let discrim = Math.sqrt(Math.pow(numbers[1],2) - 4 * numbers[0] * numbers[2]); 
+let c=s[7]+s[8];
 
-    let roots = []; 
 
-    roots[0] = Math.round((-numbers[1] + discrim) / (2 * numbers[0])); 
 
-    roots[1] = Math.round((-numbers[1] - discrim) / (2 * numbers[0])); 
+ 
 
-    
+x1=Math.round((-b+Math.sqrt(b*b-4*a*c))/(2*a));
 
-    roots = roots.sort(function (a, b) { 
+x2=Math.round((-b-Math.sqrt(b*b-4*a*c))/(2*a));
 
-    return a - b 
+if (x1 < x2) return [x1, x2]; else return [x2, x1];
 
-    }); 
 
-    
 
-    return roots; 
 }
