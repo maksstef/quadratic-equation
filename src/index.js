@@ -1,55 +1,35 @@
 module.exports = function solveEquation(equation) {
-  // your implementation
-  
-  var a, b, c;
+  let subs = equation.split(' '); 
 
-  var x1, x2;
+    subs[4] = subs[3] + subs[4]; 
 
-  var result = [];
+    subs[8] = subs[7] + subs[8]; 
 
+    
 
+    let numbers = subs.map(x => parseInt(x)); 
 
-  equation = equation.split('x');
+    numbers = numbers.filter(x => !isNaN(x)); 
 
+    
 
+    let discrim = Math.sqrt(Math.pow(numbers[1],2) - 4 * numbers[0] * numbers[2]); 
 
-  a = parseInt(equation[0], 10);
+    let roots = []; 
 
+    roots[0] = Math.round((-numbers[1] + discrim) / (2 * numbers[0])); 
 
+    roots[1] = Math.round((-numbers[1] - discrim) / (2 * numbers[0])); 
 
-  b = equation[1].replace(/\s/g, "");
+    
 
-  b = b.slice(2);
+    roots = roots.sort(function (a, b) { 
 
-  b = parseInt(b, 10);
+    return a - b 
 
+    }); 
 
+    
 
-  c = equation[2].replace(/\s/g, "");
-
-  c = parseInt(c, 10);
-
-
-
-  x1 = Math.round((-b + Math.sqrt((Math.pow(b, 2)) - 4 * a * c)) / (2 * a));
-
-  x2 = Math.round((-b - Math.sqrt((Math.pow(b, 2)) - 4 * a * c)) / (2 * a));
-
-  if (x1 < x2) {
-
-    result[result.length] = x1;
-
-    result[result.length] = x2;
-
-  } else {
-
-    result[result.length] = x2;
-
-    result[result.length] = x1;
-
-  }
-
-  
-
-  return result;
+    return roots; 
 }
